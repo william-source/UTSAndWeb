@@ -21,8 +21,16 @@
   <ion-button expand="full" (click)="simpan()">SAVE / UPDATE</ion-button>
 
 
- 
-
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="ion-text-center">
+          <h1>LIST OF NOTES</h1>
+          <h3>select the note to update</h3>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <ion-list *ngFor="let data of isiData | async">
     <ion-card (click)="updated(data.judul,data.isi,data.tanggal,data.nilai)">
       <ion-item >
