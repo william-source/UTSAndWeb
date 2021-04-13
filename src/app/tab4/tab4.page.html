@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>NOTES</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-input placeholder="Title" [(ngModel)]="Judul"></ion-input>
+  <ion-input placeholder="Value" [(ngModel)]="Isi"></ion-input>
+  <!-- <ion-input placeholder="Date" [(ngModel)]="tanggal"></ion-input>
+  <ion-input placeholder="Month" [(ngModel)]="bulan"></ion-input>
+  <ion-input placeholder="Year" [(ngModel)]="tahun"></ion-input> -->
+  <ion-input placeholder="Nilai" [(ngModel)]="nilai" type="number"></ion-input>
+  <ion-datetime displayFormat="MM DD YY" placeholder="Select Date" [(ngModel)]="tanggal"> </ion-datetime>
+
+  <ion-button expand="full" (click)="simpan()">SIMPAN</ion-button>
+
+
+ 
+
+  <ion-list *ngFor="let data of isiData | async">
+    <ion-card>
+      <ion-item >
+        <ion-card-header>
+          <ion-card-title>{{data.judul}}</ion-card-title>
+          <ion-card-subtitle>{{data.isi}}</ion-card-subtitle>
+        </ion-card-header>
+      </ion-item>
+      <ion-card-content>
+        <ion-icon size="large" (click)="delete(data.judul)" name="trash-outline"></ion-icon>
+        <ion-icon size="large" (click)="goToDetail(data.judul,data.isi,data.tanggal,data.nilai)" name="eye-outline"></ion-icon>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+</ion-content>
