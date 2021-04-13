@@ -20,6 +20,7 @@ export class Tab4Page implements OnInit {
       tanggal : string;
       nilai : string;
       date : string     
+      code = 0
       constructor(
         afs : AngularFirestore,
         private router : Router,
@@ -44,8 +45,18 @@ export class Tab4Page implements OnInit {
         this.Isi = ""
         this.tanggal=""
         this.nilai=""
+        this.code=0
       }
-    
+
+      updated(judul,isi,tanggal,nilai){
+        this.code = 1
+        this.Judul = judul
+        this.Isi = isi
+        this.tanggal=tanggal
+        this.nilai=nilai
+        this.clear
+      }
+
       delete(a){
         this.isiDataColl.doc(a).delete().then(()=>{
           console.log("Document successfully deleted!");
@@ -67,6 +78,7 @@ export class Tab4Page implements OnInit {
       }
 
       ngOnInit(){
+        this.clear
         this.isiDataColl = this.afs.collection('dataCoba')
         this.isiData = this.isiDataColl.valueChanges();
       }
@@ -74,11 +86,6 @@ export class Tab4Page implements OnInit {
       goToDetail(judul,isi,tanggal,nilai){
         this.router.navigate(['/tab3',judul,isi,tanggal,nilai])
       }
-
-      // tambahImage(){
-      //   this.date = this.Isi,this.tanggal+"/"+this.bulan+"/"+this.tahun
-      //   this.router.navigate(['/tab2',this.Judul,this.Isi,this.date,this.nilai])
-      // }
 }
 interface data {
     judul : string,
